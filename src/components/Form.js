@@ -1,24 +1,57 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-function Form() {
-  const [firstName, setFirstName] = useState("John");
-  const [lastName, setLastName] = useState("Henry");
+function UpdatedForm() {
+  const [formData, setFormData] = useState({
+    firstName: "joyce",
+    lastName: "mwangi",
+  });
 
-  function handleFirstNameChange(event) {
-    setFirstName(event.target.value);
+  function handleChange(e) {
+    const name = e.target.name;
+    let value = e.target.value;
+
+    
+    if (e.target.type === "checkbox") {
+      value = e.target.checked;
+    }
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   }
 
-  function handleLastNameChange(event) {
-    setLastName(event.target.value);
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(formData);
   }
 
   return (
-    <form>
-      <input type="text" onChange={handleFirstNameChange} value={firstName} />
-      <input type="text" onChange={handleLastNameChange} value={lastName} />
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        id="firstName" 
+        name="firstName" 
+        value={formData.firstName}
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        id="lastName" 
+        name="lastName" 
+        value={formData.lastName}
+        onChange={handleChange}
+      />
+      <input
+        type="checkbox"
+        id="admin" 
+        name="admin" 
+        onChange={handleChange}
+        checked={formData.admin}
+      />
       <button type="submit">Submit</button>
     </form>
   );
 }
 
-export default Form;
+export default UpdatedForm;
