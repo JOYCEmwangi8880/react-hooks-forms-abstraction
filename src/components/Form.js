@@ -10,10 +10,7 @@ function UpdatedForm() {
     const name = e.target.name;
     let value = e.target.value;
 
-    
-    if (e.target.type === "checkbox") {
-      value = e.target.checked;
-    }
+   
 
     setFormData({
       ...formData,
@@ -42,13 +39,7 @@ function UpdatedForm() {
         value={formData.lastName}
         onChange={handleChange}
       />
-      <input
-        type="checkbox"
-        id="admin" 
-        name="admin" 
-        onChange={handleChange}
-        checked={formData.admin}
-      />
+   
       <button type="submit">Submit</button>
     </form>
   );
